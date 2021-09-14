@@ -8,7 +8,7 @@ export default class BurgerConstructor extends React.Component {
     return (
       <>
         <div className={burgerConstructorStyles.body__const}>
-          <h1 className={burgerConstructorStyles.title__const}>Соберите бургер</h1>
+          <h1 className={`${burgerConstructorStyles.div} text text_type_main-default`}>Соберите бургер</h1>
           <div style={{ display: 'flex' }}>
           </div>
         </div>
