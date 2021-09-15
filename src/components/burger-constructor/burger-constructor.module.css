@@ -1,7 +1,11 @@
 .body__const {
     width: 50%;
-    font-family: 'JetBrains Mono', sans-serif;
 }
-.title__const {
-    font-size: 36px;
+.container__tabs {
+    display: flex;
+    flex-direction: row;
+}
+.scrollcontainer {
+    max-height: 800px;
+    overflow-y: auto;
 }
