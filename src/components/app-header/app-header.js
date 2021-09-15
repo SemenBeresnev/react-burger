@@ -13,18 +13,18 @@ function AppHeader() {
           <div className={appHeaderStyles.container__buttons}>
             <div className={appHeaderStyles.container__button}>
               <BurgerIcon type="primary" />
-              <h className='text text_type_main-default ml-3'>Конструктор</h>
+              <a href="/" className='text text_type_main-default ml-3'>Конструктор</a>
             </div>
             <div className={appHeaderStyles.container__button}>
               <ListIcon type="primary" className={appHeaderStyles.icons} />
-              <h className='text text_type_main-default ml-3'>Лента Заказов</h>
+              <a href="/" className='text text_type_main-default ml-3'>Лента Заказов</a>
             </div>
           </div>
           <Logo />
           <div></div>
           <div className={appHeaderStyles.container__button}>
             <ProfileIcon type='primary' />
-            <h className='text text_type_main-default ml-3'>Личный Кабинет</h>
+            <a href="/" className='text text_type_main-default ml-3'>Личный Кабинет</a>
           </div>
         </div>
       </div>

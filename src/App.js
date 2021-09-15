@@ -36,7 +36,7 @@ function App() {
           {!state.hasError && state.isLoading  && <h1 className={`${appStyles.info_text} text text_type_main-medium text_color_sucess p-8`}>Идет загрузка данных...</h1>}
           {state.hasError && <h1 className={`${appStyles.info_text} text text_type_main-medium text_color_error p-8`}>При загрузке данных произошла ошибка: <br/> {state.errorMessage}</h1>}
           {!state.hasError && !state.isLoading &&
-            <div className={appStyles.main__container}>
+            <div className={appStyles.burger_cont}>
               <BurgerIngredients ingredients={state.data} />
               <BurgerConstructor ingredients={state.data} />
             </div>
