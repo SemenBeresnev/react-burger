@@ -32,6 +32,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## компоненты
 
 App - Типа done
-app-header
-burger-ingredients
-burger-constract
+app-header - типа done
+burger-ingredients - типа done
+burger-constract - типа done
+modal и modal-overlay - тоже типа done
+ingredient-details - типа done
+order-details - типа done

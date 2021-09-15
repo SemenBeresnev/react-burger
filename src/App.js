@@ -16,14 +16,14 @@ function App() {
 
   React.useEffect(() => {
     const getIngredients = async () => {
-        setState(prevState => ({...prevState, isLoading: true, hasError: false, data: prevState.data}));
-        await fetch(ingredientsUrl)
-            .then(res => res.json())
-            .then((res) => setState(prevState => ({...prevState, data: res.data, isLoading: false, hasError: false})))
-            .catch((error) => {
-              console.log(typeof error)
-              setState(prevState => ({ ...prevState, hasError: true, isLoading: false, data: prevState.data,  errorMessage: String(error)}));
-            });
+      setState(prevState => ({...prevState, isLoading: true, hasError: false}));
+      await fetch(ingredientsUrl)
+        .then(res => res.json())
+        .then((res) => setState(prevState => ({...prevState, data: res.data, isLoading: false, hasError: false})))
+        .catch((error) => {
+          console.log(typeof error)
+          setState(prevState => ({ ...prevState, hasError: true, isLoading: false, errorMessage: String(error)}));
+        });
     }
     getIngredients();
   }, [])

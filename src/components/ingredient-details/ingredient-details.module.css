@@ -8,7 +8,7 @@
     align-items: center;
     flex-direction: column;
 }
-
+ 
 .item {
     composes: flex;
     align-items: center;

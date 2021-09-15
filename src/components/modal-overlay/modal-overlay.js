@@ -12,4 +12,4 @@ ModalOverlay.propsTypes = {
     onClose: PropTypes.func.isRequired
 }
 
-export default  ModalOverlay;
+export default  ModalOverlay; 
