@@ -21,9 +21,9 @@ function BurgerConstructor(props) {
           </li>
           <li className={burgerConstructorStyles.item}>
             <ul className={`${burgerConstructorStyles.list_scroll} custom-scroll`} style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: "flex-end" }}>
-              {props.ingredients.map((ingredient) => {
+              {props.ingredients.map((ingredient, item) => {
                   if(ingredient.type !== 'bun') {
-                    return (<li className={burgerConstructorStyles.item} key={ingredient._id} _id={ingredient._id}>
+                    return (<li className={burgerConstructorStyles.item} key={item} _id={ingredient._id}>
                       <div className="mr-2">
                           <DragIcon type={"primary"} />
                       </div>

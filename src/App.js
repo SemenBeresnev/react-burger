@@ -18,7 +18,10 @@ function App() {
     const getIngredients = async () => {
       setState(prevState => ({...prevState, isLoading: true, hasError: false}));
       await fetch(ingredientsUrl)
-        .then(res => res.json())
+        .then(res => {
+          if (res.ok) {return res.json();}
+          return Promise.reject(res.status);
+        })
         .then((res) => setState(prevState => ({...prevState, data: res.data, isLoading: false, hasError: false})))
         .catch((error) => {
           console.log(typeof error)
