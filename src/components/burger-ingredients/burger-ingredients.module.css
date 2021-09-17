@@ -1,7 +1,40 @@
-.body__ing {
-    font-family: 'JetBrains Mono', sans-serif;
-    width: 50%;
+.constructor {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
 }
-.title__ing {
-    font-size: 36px;
+
+.articles {
+    height: 60vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+
+.articles_container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.article {
+    max-width: 272px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image {
+    width: 240px;
+    height: 120px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+.article_name {
+    text-align: center;
 }
