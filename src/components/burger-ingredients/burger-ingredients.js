@@ -1,107 +1,119 @@
-import React from 'react';
-import burgerIngredientsStyles from './burger-ingredients.module.css';
-import { Tab, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from 'prop-types';
-import dataPropTypes from "../../utils/prop-types";
+import React, {createRef, useEffect} from 'react';
+import ingredientsStyles from './burger-ingredients.module.css';
+import Ingredient from "../ingredient/ingredient";
+import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getIngredients,
+    REMOVE_INGREDIENT_FROM_MODAL,
+    SET_INGREDIENT_TO_MODAL
+} from "../../services/actions/burger-ingredients";
 
-function BurgerIngredients(props) {
-  const [current, setCurrent] = React.useState('but');
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [modalData, setModalData] = React.useState({});
+function BurgerIngredients() {
+    const {ingredients, ingredientsRequest, ingredientsError, ingredientDetails} = useSelector(state => state.burgerIngredients)
+    const [current, setCurrent] = React.useState('buns');
+    const [modalIsOpen, setModalIsOpen] = React.useState(false);
+    const bunsRef = createRef();
+    const saucesRef = createRef();
+    const mainsRef = createRef();
+    const dispatch = useDispatch();
 
-  const handleTabClick = (value) => {
-    setCurrent(value);
-  }
+    useEffect(() => {
+        dispatch(getIngredients());
+    }, [dispatch]);
 
-  const handleOpenModal = (e) => {
-      const id = e.currentTarget.getAttribute('_id');
-      setModalData(props.ingredients.find((item) => item._id === id));
-      setModalIsOpen(true);
-  }
-  
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-  }
-  return (
-    <>
-      <div className={burgerIngredientsStyles.constructor}>
-        <h1 className="text text_type_main-large mt-10">Соберите бургер</h1>
-        <div style={{ display: 'flex' }} className='mt-5'>
-          <a href="#buts">
-            <Tab value="but" active={current === 'but'} onClick={handleTabClick}>
-              Булка
-            </Tab>
-          </a>
-          <a href="#sauces">
-            <Tab value="sauce" active={current === 'sauce'} onClick={handleTabClick}>
-              Соусы
-            </Tab>
-          </a>
-          <a href="#mains">
-            <Tab value="main" active={current === 'main'} onClick={handleTabClick}>
-              Начинки
-            </Tab>
-          </a>
-        </div>
-        <div className={`${burgerIngredientsStyles.articles}  custom-scroll mt-10`}>
-          <h3 className="text text_type_main-medium" id="buts">Булки</h3>
-          <div className={burgerIngredientsStyles.articles_container}>
-            {props.ingredients.filter((ingr) => ingr.type === 'bun').map((ingr) => {
-              return(
-                <div className={burgerIngredientsStyles.article} onClick={handleOpenModal} _id={ingr._id} key={ingr._id}>
-                  <img className={`${burgerIngredientsStyles.image} pr-4 pl-4`} src={ingr.image} alt=""/>
-                  <div className={`${burgerIngredientsStyles.price} mt-1 mb-1`}>
-                    <span className='text text_type_digits-default mr-2'>{ingr.price}</span>
-                    <CurrencyIcon type="primary" />
-                  </div>
-                  <p className={`${burgerIngredientsStyles.article_name} text text_type_main-default mt-1 mb-10`}>{ingr.name}</p>
-                </div>
-              )
-            })}
-          </div>
-          <h3 className="text text_type_main-medium" id="sauces">Соусы</h3>
-          <div className={burgerIngredientsStyles.articles_container}>
-          {props.ingredients.filter((ingr) => ingr.type === 'sauce').map((ingr) => {
-              return(
-                <div className={burgerIngredientsStyles.article} onClick={handleOpenModal} _id={ingr._id} key={ingr._id}>
-                  <img className={`${burgerIngredientsStyles.image} pr-4 pl-4`} src={ingr.image} alt=""/>
-                  <div className={`${burgerIngredientsStyles.price} mt-1 mb-1`}>
-                    <span className='text text_type_digits-default mr-2'>{ingr.price}</span>
-                    <CurrencyIcon type="primary" />
-                  </div>
-                  <p className={`${burgerIngredientsStyles.article_name} text text_type_main-default mt-1 mb-10`}>{ingr.name}</p>
-                </div>
-              )
-            })}
-          </div>
-          <h3 className="text text_type_main-medium" id="mains">Начинки</h3>
-            <div className={burgerIngredientsStyles.articles_container}>
-            {props.ingredients.filter((ingr) => ingr.type === 'main').map((ingr) => {
-              return(
-                <div className={burgerIngredientsStyles.article} onClick={handleOpenModal} _id={ingr._id} key={ingr._id}>
-                  <img className={`${burgerIngredientsStyles.image} pr-4 pl-4`} src={ingr.image} alt=""/>
-                  <div className={`${burgerIngredientsStyles.price} mt-1 mb-1`}>
-                    <span className='text text_type_digits-default mr-2'>{ingr.price}</span>
-                    <CurrencyIcon type="primary" />
-                  </div>
-                  <p className={`${burgerIngredientsStyles.article_name} text text_type_main-default mt-1 mb-10`}>{ingr.name}</p>
-                </div>
-              )
-            })}
-            </div>
-          </div>
-        </div>
-        {modalIsOpen && modalData && (
-          <Modal onClose={handleCloseModal} title={'Детали ингредиента'}>
-            <IngredientDetails data={modalData} />
-          </Modal>)
+    const handleOpenModal = (e) => {
+        const id = e.currentTarget.getAttribute('_id');
+        dispatch({
+            type: SET_INGREDIENT_TO_MODAL,
+            item: ingredients.find((item) => item._id === id)
+        })
+        setModalIsOpen(true);
+    }
+    const handleCloseModal = () => {
+        setModalIsOpen(false);
+        dispatch({
+            type: REMOVE_INGREDIENT_FROM_MODAL
+        })
+    }
+    const handleTabClick = (value) => {
+        setCurrent(value);
+    }
+
+    const handleScroll = (e) => {
+        const scrollContainer = e.target;
+        const saucesContainer = saucesRef.current.getBoundingClientRect();
+        const mainsContainer = mainsRef.current.getBoundingClientRect();
+        // console.log(`buns: ${scrollContainer.offsetTop - bunsContainer.top}, sauces: ${scrollContainer.offsetTop - saucesContainer.top}, mains: ${scrollContainer.offsetTop - mainsContainer.top}`)
+        if (scrollContainer.offsetTop - saucesContainer.top < 0) {
+            setCurrent('buns');
+        } else if (scrollContainer.offsetTop - mainsContainer.top < 0) {
+            setCurrent('sauces');
+        } else {
+            setCurrent('mains');
         }
-      </>
+    }
+
+    return (
+        <>
+            {ingredientsRequest && !ingredientsError && (
+                <h1>Идет загрузка...</h1>
+            )}
+            {ingredientsError && !ingredientsRequest && (
+                <h1>Произошла ошибка попробуйте позже</h1>
+            )}
+            {!ingredientsError && !ingredientsRequest && ingredients.length > 0 && (
+                <div className={ingredientsStyles.constr}>
+                    <h1 className="text text_type_main-large mt-10">Соберите бургер</h1>
+                    <div style={{display: 'flex'}} className='mt-5'>
+                        <a href="#buns">
+                            <Tab value="buns" active={current === 'buns'} onClick={handleTabClick}>
+                                Булка
+                            </Tab>
+                        </a>
+                        <a href="#sauces">
+                            <Tab value="sauces" active={current === 'sauces'} onClick={handleTabClick}>
+                                Соусы
+                            </Tab>
+                        </a>
+                        <a href="#mains">
+                            <Tab value="mains" active={current === 'mains'} onClick={handleTabClick}>
+                                Начинки
+                            </Tab>
+                        </a>
+                    </div>
+                    <div className={`${ingredientsStyles.ingredients} mt-10`}>
+                        <div className={ingredientsStyles.products} onScroll={handleScroll}>
+                            <h3 className="text text_type_main-medium" ref={bunsRef} id="buns">Булки</h3>
+                            <div className={ingredientsStyles.products__cont}>
+                                {ingredients.filter((item) => item.type === 'bun').map((item) => <Ingredient
+                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                            </div>
+                            <h3 className="text text_type_main-medium" ref={saucesRef} id="sauces">Соусы</h3>
+                            <div className={ingredientsStyles.products__cont}>
+                                {ingredients.filter((item) => item.type === 'sauce').map((item) => <Ingredient
+                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                            </div>
+                            <h3 className="text text_type_main-medium" ref={mainsRef} id="mains">Начинки</h3>
+                            <div className={ingredientsStyles.products__cont}>
+                                {ingredients.filter((item) => item.type === 'main').map((item) => <Ingredient
+                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+            }
+            {modalIsOpen && ingredientDetails && (
+                <Modal onClose={handleCloseModal} title={'Детали ингредиента'}>
+                    <IngredientDetails data={ingredientDetails}/>
+                </Modal>)
+            }
+        </>
     );
 
 }
-BurgerIngredients.propTypes = {ingredients: PropTypes.arrayOf(dataPropTypes.isRequired).isRequired}
 
 export default BurgerIngredients;
