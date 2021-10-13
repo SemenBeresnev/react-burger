@@ -11,7 +11,7 @@ export const getIngredients = () => {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         })
-        fetch(apiURL)
+        fetch(apiURL + '/ingredients')
             .then(res => {
                 if (res.ok) {
                     return res.json();

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, useLocation} from "react-router-dom";
 import ingredientStyle from './ingredient.module.css';
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
@@ -10,6 +11,7 @@ const Ingredient = (props) => {
     const {image, price, name, _id, onOpen, type} = props;
     let ingredientsCount = ingredients.filter((item) => item._id === _id).length;
     let counter;
+    const location = useLocation();
 
     if (type === 'bun' && bun && bun._id === _id) {
         counter = 2;
@@ -26,17 +28,24 @@ const Ingredient = (props) => {
             opacity: monitor.isDragging() ? 0.5 : 1
         })
     })
+
     return (
-        <div ref={ref} draggable className={`${ingredientStyle.product}`} style={{opacity: opacity}} onClick={onOpen}
-             _id={_id}>
-            {counter && <Counter count={counter}/>}
-            <img className={`${ingredientStyle.image} pr-4 pl-4`} src={image} alt=""/>
-            <div className={`${ingredientStyle.price} mt-1 mb-1`}>
-                <span className='text text_type_digits-default mr-2'>{price}</span>
-                <CurrencyIcon type="primary"/>
-            </div>
-            <p className={`${ingredientStyle.name} text text_type_main-default mt-1 mb-10`}>{name}</p>
+      <Link
+          to={{pathname: `/ingredients/${_id}`, state: {background: location}}}
+          ref={ref}
+          draggable
+          className={`${ingredientStyle.product}`}
+          style={{opacity: opacity}}
+          onClick={onOpen}
+          _id={_id} >
+        {counter && <Counter count={counter}/>}
+        <img className={`${ingredientStyle.image} pr-4 pl-4`} src={image} alt=""/>
+        <div className={`${ingredientStyle.price} mt-1 mb-1`}>
+          <span className='text text_type_digits-default mr-2'>{price}</span>
+          <CurrencyIcon type="primary"/>
         </div>
+        <p className={`${ingredientStyle.name} text text_type_main-default mt-1 mb-10`}>{name}</p>
+      </Link>
     )
 }
 
