@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, useRouteMatch} from "react-router-dom";
+import {NavLink, useRouteMatch, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -31,7 +31,9 @@ function AppHeader() {
             </NavLink>
           </div>
         </div>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <div className={appHeaderStyles.container__button}>
           {isAuth ? (
             <NavLink to={"/profile"} activeClassName={appHeaderStyles.nav__linkActive} className={`${appHeaderStyles.profile} text text_type_main-default pl-4 pr-4 pt-2 pb-2`}>

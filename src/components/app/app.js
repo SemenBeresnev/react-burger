@@ -4,8 +4,6 @@ import AppHeader from '../app-header/app-header';
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {Home, Login, Register, ForgotPassword, ResetPassword, Profile, NotFound} from "../../pages";
 import {ProtectedRoute} from "../../hocs/protected-route";
-import appStyles from './app.module.css';
-
 
 function App() {
   const history = useHistory();

@@ -36,7 +36,7 @@ export function Register() {
         <div className="container">
             <div className={styles.login__container}>
                 <h3 className="text text_type_main-medium mb-6">Регистрация</h3>
-                <form className="form" action="">
+                <form className="form" action="" onSubmit={handleSubmit}>
                     <div className="form__item mb-6">
                         <Input
                             placeholder="Имя"
@@ -73,7 +73,7 @@ export function Register() {
                         />
                     </div>
                     <div className={`${styles.form__button} mb-20`}>
-                        <Button type={"primary"} size="medium" onClick={handleSubmit}>Зарегестрироваться</Button>
+                        <Button type={"primary"} size="medium">Зарегестрироваться</Button>
                     </div>
                 </form>
                 <div className={styles.login__links}>

@@ -42,7 +42,7 @@ export function ResetPassword() {
         <div className="container">
             <div className={resetStyles.login__container}>
                 <h3 className="text text_type_main-medium mb-6">Восстановление пароля</h3>
-                <form className="form" action="">
+                <form className="form" action="" onSubmit={onSendForm}>
                     <div className="form__item mb-6">
                         <Input
                             type={"password"}
@@ -69,7 +69,7 @@ export function ResetPassword() {
                         />
                     </div>
                     <div className={`${resetStyles.form__button} mb-20`}>
-                        <Button type={"primary"} onClick={onSendForm} size="medium">Войти</Button>
+                        <Button type={"primary"} size="medium">Войти</Button>
                     </div>
                 </form>
                 <div className={resetStyles.login__links}>

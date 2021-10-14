@@ -57,7 +57,7 @@ export function ProfileForm() {
     }
 
     return (
-        <form className={`${styles.form}`}>
+        <form className={`${styles.form}`} onSubmit={handleSubmit}>
             <div className="form__item mb-6">
                 <Input
                     placeholder="Имя"
@@ -98,7 +98,7 @@ export function ProfileForm() {
             {isChangeInput && (
                 <div className={`${styles.form__buttons} mb-20`}>
                     <Button type={"secondary"} size="medium" onClick={handleCancel}>Отмена</Button>
-                    <Button type={"primary"} size="medium" onClick={handleSubmit}>Сохранить</Button>
+                    <Button type={"primary"} size="medium">Сохранить</Button>
                 </div>
             )}
         </form>

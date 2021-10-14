@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import ingredientDetailsStyle from './ingredient-details.module.css';
-import dataPropTypes from "../../utils/prop-types";
+//import dataPropTypes from "../../utils/prop-types";
 import {getIngredients} from "../../services/actions/burger-ingredients";
 
 function IngredientDetails() {
@@ -24,12 +24,12 @@ function IngredientDetails() {
   }
 
 
-  if (!ingredientDetailsIsEmpty) {ingredient = ingredientDetails;
+  if (!ingredientDetailsIsEmpty()) {ingredient = ingredientDetails;
   } else {ingredient = ingredients.find((item) => item._id === id); };
 
   return (
     <>
-      {ingredientDetailsIsEmpty && (
+      {ingredientDetailsIsEmpty() && (
               <h1 className={`${ingredientDetailsStyle.title}  mt-30 text text_color_primary text_type_main-large`}>Детали ингредиента</h1>
           )}
           {ingredient && (
@@ -64,6 +64,6 @@ function IngredientDetails() {
   )
 }
 
-IngredientDetails.propTypes = {data: dataPropTypes.isRequired};
+//IngredientDetails.propTypes = {data: dataPropTypes.isRequired};
 
 export default  IngredientDetails;

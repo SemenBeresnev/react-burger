@@ -28,7 +28,7 @@ export function ForgotPassword() {
         <div className="container">
             <div className={styles.login__container}>
                 <h3 className="text text_type_main-medium mb-6">Восстановление пароля</h3>
-                <form className="form" action="">
+                <form className="form" action="" onSubmit={onSendForm}>
                     <div className="form__item mb-6">
                         <Input
                             placeholder="Укажите E-mail"
@@ -42,7 +42,7 @@ export function ForgotPassword() {
                         />
                     </div>
                     <div className={`${styles.form__button} mb-20`}>
-                        <Button onClick={onSendForm} type={"primary"} size="medium">Войти</Button>
+                        <Button type={"primary"} size="medium">Войти</Button>
                     </div>
                 </form>
                 <div className={styles.login__links}>
