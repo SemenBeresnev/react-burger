@@ -1,4 +1,5 @@
-import { postOrderURL} from "../../utils/constants";
+import { apiURL } from "../../utils/constants";
+
 
 export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -17,7 +18,7 @@ export const postOrder = (idsArr) => {
         dispatch({
             type: GET_ORDER_REQUEST
         })
-        fetch(postOrderURL, {
+        fetch(apiURL + '/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

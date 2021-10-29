@@ -1,22 +1,45 @@
 import React from 'react';
-import AppHeader from '../app-header/app-header'
-import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import BurgerConstructor from '../burger-constructor/burger-constructor'
-import appStyles from './app.module.css'
-
+import {Switch, Route, useLocation, useHistory} from 'react-router-dom';
+import AppHeader from '../app-header/app-header';
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import {Home, Login, Register, ForgotPassword, ResetPassword, Profile, NotFound} from "../../pages";
+import {ProtectedRoute} from "../../hocs/protected-route";
 
 function App() {
+  const history = useHistory();
+  const location = useLocation();
+  let background = history.action === 'PUSH' && location.state && location.state.background;
 
   return (
     <>
       <AppHeader />
       <main>
-        <div className={`${appStyles.container} pl-5 pr-5`}>
-            <div className={appStyles.burger_cont}>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </div>
-        </div>
+        <Switch location={background || location}>
+          <Route path="/" exact={true}>
+            <Home/>
+          </Route>
+          <Route path="/login" exact={true}>
+            <Login/>
+          </Route>
+            <Route path={"/register"} exact={true}>
+          <Register/>
+            </Route>
+          <Route path={"/forgot-password"} exact={true}>
+            <ForgotPassword/>
+          </Route>
+            <Route path={"/reset-password"} exact={true}>
+          <ResetPassword/>
+            </Route>
+          <Route path={"/ingredients/:id"} exact={true}>
+            <IngredientDetails />
+          </Route>
+          <ProtectedRoute path={"/profile"} exact={true}>
+            <Profile/>
+          </ProtectedRoute>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
       </main>  
     </>
   );
