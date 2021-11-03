@@ -1,4 +1,4 @@
-import {checkResponse, getUser, patchUser, sendData} from "../../utils/api";
+import {checkResponse, getUser, patchUser} from "../../utils/api";
 import {apiURL} from "../../utils/constants";
 import {Dispatch} from "react";
 import {History} from 'history';
@@ -19,13 +19,12 @@ export const sendForgotPassword = (emailValue: string, history: History) => {
         dispatch({
             type: GET_USER_REQUEST
         })
-        sendData({
-            url: `${apiURL}/password-reset`,
+        fetch(`${apiURL}/password-reset`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {email: emailValue}
+            body: JSON.stringify({email: emailValue})
         })
             .then(res => checkResponse(res))
             .then(res => {
@@ -53,16 +52,15 @@ export const sendResetPassword = (form: TFormReset, history: History) => {
         dispatch({
             type: GET_USER_REQUEST
         })
-        sendData({
-            url: `${apiURL}/password-reset/reset`,
+        fetch(`${apiURL}/password-reset/reset`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 password: form.password,
                 token: form.token
-            }
+            })
         })
             .then(res => checkResponse(res))
             .then(res => {
@@ -90,17 +88,16 @@ export const sendRegister = (form: TForm, history: History) => {
         dispatch({
             type: GET_USER_REQUEST
         })
-        sendData({
-            url: `${apiURL}/auth/register`,
+        fetch(`${apiURL}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 email: form.email,
                 password: form.password,
                 name: form.name
-            }
+            })
         })
             .then(res => checkResponse(res))
             .then(res => {
@@ -141,16 +138,15 @@ export const sendLogin = (form: TFormLogin, history: History, from: { pathname: 
         dispatch({
             type: GET_USER_REQUEST
         })
-        sendData({
-            url: `${apiURL}/auth/login`,
+        fetch(`${apiURL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 email: form.email,
                 password: form.password,
-            }
+            })
         })
             .then(res => checkResponse(res))
             .then(res => {
@@ -191,15 +187,14 @@ export const sendLogout = (history: History) => {
         dispatch({
             type: GET_USER_REQUEST
         })
-        sendData({
-            url: `${apiURL}/auth/logout`,
+        fetch(`${apiURL}/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 token: localStorage.getItem('refreshToken'),
-            }
+            })
         })
             .then(res => checkResponse(res))
             .then(res => {
