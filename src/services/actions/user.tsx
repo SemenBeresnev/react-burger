@@ -1,5 +1,8 @@
 import {checkResponse, getUser, patchUser, sendData} from "../../utils/api";
 import {apiURL} from "../../utils/constants";
+import {Dispatch} from "react";
+import {History} from 'history';
+import { TForm, TFormLogin, TFormReset } from "../../utils/types"; 
 
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
@@ -11,8 +14,8 @@ export const CHANGE_USER_INFO = 'CHANGE_USER_INFO';
 export const SET_WAS_ON_FORGOT_PAGE = 'SET_WAS_ON_FORGOT_PAGE';
 export const DELETE_WAS_ON_FORGOT_PAGE = 'DELETE_WAS_ON_FORGOT_PAGE';
 
-export const sendForgotPassword = (emailValue, history) => {
-    return function (dispatch) {
+export const sendForgotPassword = (emailValue: string, history: History) => {
+    return function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -45,8 +48,8 @@ export const sendForgotPassword = (emailValue, history) => {
     }
 }
 
-export const sendResetPassword = (form, history) => {
-    return function (dispatch) {
+export const sendResetPassword = (form: TFormReset, history: History) => {
+    return function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -82,8 +85,8 @@ export const sendResetPassword = (form, history) => {
     }
 }
 
-export const sendRegister = (form, history) => {
-    return function (dispatch) {
+export const sendRegister = (form: TForm, history: History) => {
+    return function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -133,8 +136,8 @@ export const sendRegister = (form, history) => {
     }
 }
 
-export const sendLogin = (form, history, from) => {
-    return function (dispatch) {
+export const sendLogin = (form: TFormLogin, history: History, from: { pathname: string }) => {
+    return function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -183,8 +186,8 @@ export const sendLogin = (form, history, from) => {
     }
 }
 
-export const sendLogout = (history) => {
-    return function (dispatch) {
+export const sendLogout = (history: History) => {
+    return function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -223,7 +226,7 @@ export const sendLogout = (history) => {
 }
 
 export const getUserInfo = () => {
-    return async function (dispatch) {
+    return async function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -253,8 +256,8 @@ export const getUserInfo = () => {
     }
 }
 
-export const sendUserInfo = (form) => {
-    return async function (dispatch) {
+export const sendUserInfo = (form: TForm) => {
+    return async function (dispatch: Dispatch<any>) {
         dispatch({
             type: GET_USER_REQUEST
         })

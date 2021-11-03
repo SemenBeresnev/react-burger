@@ -18,7 +18,7 @@ const initialState = {
     totalPrice: 0
 }
 
-export const constructorReducer = (state = initialState, action) => {
+export const constructorReducer = (state = initialState, action: any) => {
     switch(action.type) {
         case GET_ORDER_FAILED:
             return {
@@ -54,7 +54,7 @@ export const constructorReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ingredients: [
-                    ...state.ingredients.filter((item) => item.uuid !== action.id)
+                    ...state.ingredients.filter(({uuid}) => uuid !== action.id)
                 ],
             }
         case MOVE_INGREDIENT_IN_CONSTRUCTOR:

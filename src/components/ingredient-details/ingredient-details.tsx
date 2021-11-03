@@ -5,11 +5,12 @@ import {useDispatch, useSelector} from "react-redux";
 import ingredientDetailsStyle from './ingredient-details.module.css';
 //import dataPropTypes from "../../utils/prop-types";
 import {getIngredients} from "../../services/actions/burger-ingredients";
+import {TIngredient, TIngredientDetailParams} from "../../utils/types";
 
 function IngredientDetails() {
   const dispatch = useDispatch();
-  const {ingredients, ingredientDetails} = useSelector(state => state.burgerIngredients);
-  const {id} = useParams();
+  const {ingredients, ingredientDetails}: any = useSelector<any>(state => state.burgerIngredients);
+  const {id} = useParams<TIngredientDetailParams>();
   let ingredient;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function IngredientDetails() {
 
 
   if (!ingredientDetailsIsEmpty()) {ingredient = ingredientDetails;
-  } else {ingredient = ingredients.find((item) => item._id === id); };
+  } else {ingredient = ingredients.find((item: TIngredient) => item._id === id); };
 
   return (
     <>

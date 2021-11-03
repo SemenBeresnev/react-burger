@@ -5,10 +5,15 @@ import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
 
-function Modal(props) {
-  const handleCatchEsc = (e) => {
-    if (e.keyCode === 27) {
-      props.onClose(e);
+type TModalProps = {
+  title?: string,
+  onClose: () => void
+}
+
+const Modal: React.FC<TModalProps> = (props) => {
+  const handleCatchEsc = (e: KeyboardEvent) => {
+    if (e.code === 'Escape') {
+      props.onClose();
     }
   }
   React.useEffect(() => {
@@ -29,14 +34,15 @@ function Modal(props) {
          {props.children}
       </div>
     </>,
-    document.getElementById('modal-root')
+    document.getElementById('modal-root')! //  херь какая-то непонятная. Взял с доки typescript
     )
 }
 
+/*
 Modal.propTypes = {
     onClose: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     title: PropTypes.string
-}
+}*/
 
 export default  Modal;

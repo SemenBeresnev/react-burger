@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, ChangeEvent, SyntheticEvent, FormEvent} from "react";
 import styles from "./profile-form.module.css";
 import {Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useCustomInput} from "../../hooks/useInput";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo, sendUserInfo} from "../../services/actions/user";
+import { TForm } from "../../utils/types";
 
 export function ProfileForm() {
-    const {user} = useSelector(state => state.userData);
+    const {user}: any = useSelector<any>(state => state.userData);
     const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<TForm>({
         name: "",
         email: "",
         password: ""
     })
 
-    const [isChangeInput, setIsChangeInput] = useState(false);
+    const [isChangeInput, setIsChangeInput] = useState<boolean>(false);
 
     useEffect(() => {
         dispatch(getUserInfo());
@@ -32,7 +33,7 @@ export function ProfileForm() {
     const nameCustomInput = useCustomInput();
     const passCustomInput = useCustomInput();
 
-    const handleOnChange = (e) => {
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -40,13 +41,13 @@ export function ProfileForm() {
         setIsChangeInput(true);
     }
     
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(sendUserInfo(form));
         setIsChangeInput(false);
     }
 
-    const handleCancel = (e) => {
+    const handleCancel = (e: SyntheticEvent) => {
         e.preventDefault();
         setForm({
             email: user.email,
@@ -55,7 +56,7 @@ export function ProfileForm() {
         })
         setIsChangeInput(false);
     }
-
+  
     return (
         <form className={`${styles.form}`} onSubmit={handleSubmit}>
             <div className="form__item mb-6">

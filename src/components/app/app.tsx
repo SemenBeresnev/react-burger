@@ -4,10 +4,11 @@ import AppHeader from '../app-header/app-header';
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {Home, Login, Register, ForgotPassword, ResetPassword, Profile, NotFound} from "../../pages";
 import {ProtectedRoute} from "../../hocs/protected-route";
+import { TLocationState } from '../../utils/types';
 
 function App() {
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<TLocationState>();
   let background = history.action === 'PUSH' && location.state && location.state.background;
 
   return (

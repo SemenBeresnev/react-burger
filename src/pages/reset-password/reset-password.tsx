@@ -1,30 +1,31 @@
-import React, {useState} from "react";
+import React, {useState, ChangeEvent, FormEvent} from "react";
 import resetStyles from './reset-password.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import {DELETE_WAS_ON_FORGOT_PAGE, sendResetPassword} from "../../services/actions/user";
 import {useDispatch, useSelector} from "react-redux";
+import { TFormReset } from "../../utils/types";
 
 export function ResetPassword() {
     const history = useHistory();
 
-    const {wasOnForgotPass, isAuth} = useSelector(state => state.userData);
+    const {wasOnForgotPass, isAuth}: any = useSelector<any>(state => state.userData);
 
     const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<TFormReset>({
         password: "",
         token: ""
     })
 
-    const onChange = (e) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
 
-    const onSendForm = (e) => {
+    const onSendForm = (e: FormEvent) => {
         e.preventDefault();
         dispatch(sendResetPassword(form, history));
         dispatch({type: DELETE_WAS_ON_FORGOT_PAGE})
@@ -55,7 +56,7 @@ export function ResetPassword() {
                             onChange={onChange}
                             value={form.password}
                         />
-                    </div>
+                    </div>  
                     <div className="form__item mb-6">
                         <Input
                             type={"text"}
