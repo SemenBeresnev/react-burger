@@ -8,7 +8,7 @@ import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import appHeaderStyles from './app-header.module.css';
 
 function AppHeader() {
-  const {isAuth} = useSelector(state => state.userData);
+  const {isAuth}: any = useSelector<any>(state => state.userData);
   //const isAuth = false;
   const isConstructor = !!useRouteMatch({ path: '/', exact: true});
   const isFeed = !!useRouteMatch('/feed');

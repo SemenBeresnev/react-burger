@@ -3,7 +3,11 @@ import orderDetailsStyles from './order-details.module.css';
 import checkImage from '../../images/graphics.png';
 import PropTypes from "prop-types";
 
-function OrderDetails({id}) {
+type TOrderDetailsProps = {
+    id: string
+}
+
+const OrderDetails: React.FC<TOrderDetailsProps> = ({id}) => {
     return(
         <div className={`${orderDetailsStyles.order} pb-15`}>
             <h3 className={`text text_primary_ligth text_type_digits-large`}>
@@ -18,9 +22,9 @@ function OrderDetails({id}) {
         </div>
     )
 }
-
+/*
 OrderDetails.propTypes = {
     id: PropTypes.number.isRequired
-}
+}*/
 
 export default  OrderDetails;

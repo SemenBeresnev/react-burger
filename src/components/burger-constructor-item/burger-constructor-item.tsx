@@ -8,8 +8,9 @@ import {
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR
 } from "../../services/actions/burger-constructor";
 import {useDrag, useDrop} from "react-dnd";
+import {TConstructorItemIngredient, TIngredient} from "../../utils/types";
 
-const BurgerConstructorIngredient =(props) => {
+const BurgerConstructorIngredient: React.FC<TConstructorItemIngredient> = (props) => {
     const {_id, name, price, image, uuid, index} = props;
     const dispatch = useDispatch();
     const handleRemoveIngredient = () => {
@@ -19,9 +20,9 @@ const BurgerConstructorIngredient =(props) => {
         })
     }
 
-    const ref = useRef(null);
+    const ref = useRef<HTMLLIElement>(null);
 
-    const moveCardHandler = (dragIndex, hoverIndex) => {
+    const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
         dispatch({
             type: MOVE_INGREDIENT_IN_CONSTRUCTOR,
             dragIndex,
@@ -42,7 +43,7 @@ const BurgerConstructorIngredient =(props) => {
 
     const [, drop] = useDrop({
         accept: 'sortable',
-        hover(item, monitor) {
+        hover(item: TIngredient, monitor) {
             if (!ref.current) {
                 return;
             }
@@ -53,7 +54,7 @@ const BurgerConstructorIngredient =(props) => {
             }
             const hoverBoundingRect = ref.current?.getBoundingClientRect();
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            const clientOffset = monitor.getClientOffset();
+            const clientOffset:any = monitor.getClientOffset();
             const hoverClientY = clientOffset.y - hoverBoundingRect.top;
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                 return;
@@ -68,7 +69,7 @@ const BurgerConstructorIngredient =(props) => {
 
     drag(drop(ref))
 
-    return (<li _id={_id} style={{opacity: opacity}} className={constructorStyle.item} ref={ref}>
+    return (<li id={_id} style={{opacity: opacity}} className={constructorStyle.item} ref={ref}>
         <div className="mr-2" style={{cursor: 'pointer'}}>
             <DragIcon type={"primary"}/>
         </div>

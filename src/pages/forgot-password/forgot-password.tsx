@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, ChangeEvent, FormEvent} from "react";
 import styles from "./forgot-password.module.css";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
@@ -8,13 +8,13 @@ import {sendForgotPassword, SET_WAS_ON_FORGOT_PAGE} from "../../services/actions
 export function ForgotPassword() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isAuth} = useSelector(state => state.userData);
+    const {isAuth}: any = useSelector<any>(state => state.userData);
 
-    const [email, setEmail] = useState("");
-    const onChange = (e) => {
+    const [email, setEmail] = useState<string>("");
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
-    const onSendForm = (e) => {
+    const onSendForm = (e: FormEvent) => {
         e.preventDefault();
         dispatch({
             type: SET_WAS_ON_FORGOT_PAGE
@@ -42,7 +42,8 @@ export function ForgotPassword() {
                         />
                     </div>
                     <div className={`${styles.form__button} mb-20`}>
-                        <Button type={"primary"} size="medium">Войти</Button>
+                        
+                        <Button type={"primary"} size="medium">Восстановить</Button>
                     </div>
                 </form>
                 <div className={styles.login__links}>

@@ -1,27 +1,36 @@
-import React, {useState} from "react";
+import React, {useState, ChangeEvent, FormEvent} from "react";
 import styles from "./login.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {sendLogin} from "../../services/actions/user";
 
+export type TFormData = {
+    email: string;
+    password: string;
+}
+
+type TLocationState = {
+    from: Location
+}
+
 export function Login() {
     const history = useHistory();
-    const location = useLocation();
+    const location = useLocation<TLocationState>();
     const dispatch = useDispatch();
-    const {isAuth} = useSelector(state => state.userData);
-    const [form, setForm] = useState({
+    const {isAuth}: any = useSelector<any>(state => state.userData);
+    const [form, setForm] = useState<TFormData>({
         email: "",
         password: ""
     })
     let {from} = location.state || {from: {pathname: '/'}}
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(sendLogin({
             email: form.email,
@@ -51,11 +60,7 @@ export function Login() {
                     </div>
                     <div className="form__item mb-6">
                         <PasswordInput
-                            type={"password"}
                             size={"default"}
-                            placeholder="Пароль"
-                            error={false}
-                            errorText={"Ошибка какая то"}
                             name={"password"}
                             onChange={handleChange}
                             value={form.password}
