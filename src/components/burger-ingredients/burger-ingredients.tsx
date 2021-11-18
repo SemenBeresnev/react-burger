@@ -4,16 +4,16 @@ import Ingredient from "../ingredient/ingredient";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import {useDispatch, useSelector} from "react-redux";
 import {
     getIngredients,
     REMOVE_INGREDIENT_FROM_MODAL,
     SET_INGREDIENT_TO_MODAL
 } from "../../services/actions/burger-ingredients";
 import {TIngredient} from "../../utils/types";
+import { useDispatch, useSelector } from '../../services/types/types';
 
 function BurgerIngredients() {
-    const {ingredients, ingredientsRequest, ingredientsError, ingredientDetails}: any = useSelector<any>(state => state.burgerIngredients)
+    const {ingredients, ingredientsRequest, ingredientsError} = useSelector(state => state.burgerIngredients)
     const [current, setCurrent] = React.useState<string>('buns');
     const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
     const bunsRef = createRef<HTMLDivElement>();
@@ -26,6 +26,7 @@ function BurgerIngredients() {
         dispatch(getIngredients());
     }, [dispatch]);
 
+    /*
     const handleOpenModal = (e: SyntheticEvent) => {
         const id = e.currentTarget.getAttribute('id');
         dispatch({
@@ -40,6 +41,7 @@ function BurgerIngredients() {
             type: REMOVE_INGREDIENT_FROM_MODAL
         })
     }
+    */
     const handleTabClick = (value: string) => {
         setCurrent(value);
     }
@@ -93,27 +95,22 @@ function BurgerIngredients() {
                             <h3 className="text text_type_main-medium" ref={bunsRef} id="buns">Булки</h3>
                             <div className={ingredientsStyles.products__cont}>
                                 {ingredients.filter((item: TIngredient) => item.type === 'bun').map((item: TIngredient) => <Ingredient
-                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                                    {...item} key={item._id}/>)}
                             </div>
                             <h3 className="text text_type_main-medium" ref={saucesRef} id="sauces">Соусы</h3>
                             <div className={ingredientsStyles.products__cont}>
                                 {ingredients.filter((item: TIngredient) => item.type === 'sauce').map((item: TIngredient) => <Ingredient
-                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                                    {...item} key={item._id}/>)}
                             </div>
                             <h3 className="text text_type_main-medium" ref={mainsRef} id="mains">Начинки</h3>
                             <div className={ingredientsStyles.products__cont}>
                                 {ingredients.filter((item: TIngredient) => item.type === 'main').map((item: TIngredient) => <Ingredient
-                                    onOpen={handleOpenModal} {...item} key={item._id}/>)}
+                                    {...item} key={item._id}/>)}
                             </div>
                         </div>
                     </div>
                 </div>
             )
-            }
-            {modalIsOpen && ingredientDetails && (
-                <Modal onClose={handleCloseModal} title={'Детали ингредиента'}>
-                    <IngredientDetails {...ingredientDetails}/>
-                </Modal>)
             }
         </>
     );

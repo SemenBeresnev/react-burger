@@ -2,12 +2,12 @@ import React, {useEffect, useState, ChangeEvent, SyntheticEvent, FormEvent} from
 import styles from "./profile-form.module.css";
 import {Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useCustomInput} from "../../hooks/useInput";
-import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo, sendUserInfo} from "../../services/actions/user";
 import { TForm } from "../../utils/types";
+import { useDispatch, useSelector } from "../../services/types/types";
 
 export function ProfileForm() {
-    const {user}: any = useSelector<any>(state => state.userData);
+    const {user} = useSelector(state => state.userData);
     const dispatch = useDispatch();
 
     const [form, setForm] = useState<TForm>({
@@ -58,7 +58,7 @@ export function ProfileForm() {
     }
   
     return (
-        <form className={`${styles.form}`} onSubmit={handleSubmit}>
+        <form className={`${styles.form} mt-30`} onSubmit={handleSubmit}>
             <div className="form__item mb-6">
                 <Input
                     placeholder="Имя"

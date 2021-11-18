@@ -3,6 +3,7 @@ import {apiURL} from "../../utils/constants";
 import {Dispatch} from "react";
 import {History} from 'history';
 import { TForm, TFormLogin, TFormReset } from "../../utils/types"; 
+import { AppDispatch } from "../types/types";
 
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
@@ -15,7 +16,7 @@ export const SET_WAS_ON_FORGOT_PAGE = 'SET_WAS_ON_FORGOT_PAGE';
 export const DELETE_WAS_ON_FORGOT_PAGE = 'DELETE_WAS_ON_FORGOT_PAGE';
 
 export const sendForgotPassword = (emailValue: string, history: History) => {
-    return function (dispatch: Dispatch<any>) {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -48,7 +49,7 @@ export const sendForgotPassword = (emailValue: string, history: History) => {
 }
 
 export const sendResetPassword = (form: TFormReset, history: History) => {
-    return function (dispatch: Dispatch<any>) {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -84,7 +85,7 @@ export const sendResetPassword = (form: TFormReset, history: History) => {
 }
 
 export const sendRegister = (form: TForm, history: History) => {
-    return function (dispatch: Dispatch<any>) {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -104,9 +105,7 @@ export const sendRegister = (form: TForm, history: History) => {
                     if (res && res.success) {
                         dispatch({
                             type: GET_USER_SUCCESS,
-                            payload: {
                                 user: res.user
-                            }
                         });
                         dispatch({
                             type: SET_IS_AUTH,
@@ -134,7 +133,7 @@ export const sendRegister = (form: TForm, history: History) => {
 }
 
 export const sendLogin = (form: TFormLogin, history: History, from: { pathname: string }) => {
-    return function (dispatch: Dispatch<any>) {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -153,9 +152,7 @@ export const sendLogin = (form: TFormLogin, history: History, from: { pathname: 
                     if (res && res.success) {
                         dispatch({
                             type: GET_USER_SUCCESS,
-                            payload: {
-                                user: res.user
-                            },
+                              user: res.user                            
                         });
                         dispatch({
                             type: SET_IS_AUTH,
@@ -183,7 +180,7 @@ export const sendLogin = (form: TFormLogin, history: History, from: { pathname: 
 }
 
 export const sendLogout = (history: History) => {
-    return function (dispatch: Dispatch<any>) {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -221,7 +218,7 @@ export const sendLogout = (history: History) => {
 }
 
 export const getUserInfo = () => {
-    return async function (dispatch: Dispatch<any>) {
+    return async function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })
@@ -230,9 +227,7 @@ export const getUserInfo = () => {
                     if (res && res.success) {
                         dispatch({
                             type: GET_USER_INFO,
-                            payload: {
-                                user: res.user
-                            }
+                              user: res.user                            
                         })
                     } else {
                         dispatch({
@@ -252,7 +247,7 @@ export const getUserInfo = () => {
 }
 
 export const sendUserInfo = (form: TForm) => {
-    return async function (dispatch: Dispatch<any>) {
+    return async function (dispatch: AppDispatch) {
         dispatch({
             type: GET_USER_REQUEST
         })

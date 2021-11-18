@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
-import {useSelector} from "react-redux";
+
 import PropTypes from "prop-types";
+import { useSelector } from '../services/types/types';
 
 type TProtectedRouteProps = {
     exact?: boolean;
@@ -8,7 +9,7 @@ type TProtectedRouteProps = {
 }
 
 export const ProtectedRoute: React.FC<TProtectedRouteProps> = ({ children, exact, path }) => {
-   const {isAuth}: any = useSelector<any>(state => state.userData);
+   const {isAuth} = useSelector(state => state.userData);
     return (
         <Route
             exact={exact}

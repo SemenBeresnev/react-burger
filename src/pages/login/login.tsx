@@ -2,8 +2,8 @@ import React, {useState, ChangeEvent, FormEvent} from "react";
 import styles from "./login.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {sendLogin} from "../../services/actions/user";
+import { useDispatch, useSelector } from "../../services/types/types";
 
 export type TFormData = {
     email: string;
@@ -18,7 +18,7 @@ export function Login() {
     const history = useHistory();
     const location = useLocation<TLocationState>();
     const dispatch = useDispatch();
-    const {isAuth}: any = useSelector<any>(state => state.userData);
+    const {isAuth} = useSelector(state => state.userData);
     const [form, setForm] = useState<TFormData>({
         email: "",
         password: ""

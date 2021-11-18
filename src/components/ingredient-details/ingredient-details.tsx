@@ -1,23 +1,21 @@
 import React from 'react';
 import {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import ingredientDetailsStyle from './ingredient-details.module.css';
 //import dataPropTypes from "../../utils/prop-types";
 import {getIngredients} from "../../services/actions/burger-ingredients";
 import {TIngredient, TIngredientDetailParams} from "../../utils/types";
+import { useDispatch, useSelector } from '../../services/types/types';
+
+type TIngredientDetail = {
+    [key: string]: any
+} | undefined
 
 function IngredientDetails() {
   const dispatch = useDispatch();
-  const {ingredients, ingredientDetails}: any = useSelector<any>(state => state.burgerIngredients);
+  const {ingredients, ingredientDetails} = useSelector(state => state.burgerIngredients);
   const {id} = useParams<TIngredientDetailParams>();
-  let ingredient;
-
-  useEffect(() => {
-      if (ingredients.length <= 0) {
-          dispatch(getIngredients())
-      }
-  }, [dispatch, ingredients.length]);
+  const ingredient: TIngredientDetail = ingredients.find((item: TIngredient) => item._id === id);
 
   function ingredientDetailsIsEmpty() {
     for (var key in ingredientDetails) {return false;}
@@ -25,9 +23,9 @@ function IngredientDetails() {
   }
 
 
-  if (!ingredientDetailsIsEmpty()) {ingredient = ingredientDetails;
+  /*if (!ingredientDetailsIsEmpty()) {ingredient = ingredientDetails;
   } else {ingredient = ingredients.find((item: TIngredient) => item._id === id); };
-
+*/
   return (
     <>
       {ingredientDetailsIsEmpty() && (
