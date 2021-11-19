@@ -3,21 +3,20 @@ import feedStyles from "../../pages/feed/feed.module.css";
 import constructorStyle from "../burger-constructor/burger-constructor.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, useLocation, useRouteMatch } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { getDate } from "../../utils/funcs";
 import { TFeedItem } from '../../services/types/user';
-import { RootState, TLocationState } from '../../services/types/types';
+import { TLocationState, useSelector } from '../../services/types/types';
 
 
 type TFeedItemProps = {
-  data?: TFeedItem;
+  data: TFeedItem;
 }
 
-export const FeedItem: FC<TFeedItemProps> = (props: any) => {
+export const FeedItem: FC<TFeedItemProps> = (props) => {
   const location = useLocation<TLocationState>();
   const { url } = useRouteMatch();
 
-  const { ingredients } = useSelector((state: RootState) => state.burgerIngredients);
+  const { ingredients } = useSelector((state) => state.burgerIngredients);
   const _id: number = props.data.number;
 
   const uniqueOrderIngredients = Array.from(new Set(props.data.ingredients));
@@ -40,8 +39,7 @@ export const FeedItem: FC<TFeedItemProps> = (props: any) => {
 
   return (
     <Link to={{ pathname: `${url}/${_id}`, state: { background: location } }}
-      className={`${feedStyles.feed} mt-4`}
-      onClick={props.openModal}>
+      className={`${feedStyles.feed} mt-4`}>
       <div className={`${feedStyles.feed__top}`}>
         <p className={`text text_type_digits-default`}>#{props.data.number}</p>
         <p className={`text text_type_main-default text_color_inactive`}>{getDate(props.data.createdAt)}</p>
@@ -52,7 +50,7 @@ export const FeedItem: FC<TFeedItemProps> = (props: any) => {
       <div className={`${feedStyles.feed__bottom}`}>
         <div className={`${feedStyles.ingredients}`} style={{ position: "relative" }}>
           {orderIngredients.slice(0, 5).map((item, index) => (<img src={item?.image_mobile} alt="" className={`${feedStyles.ingredient}`} key={index} style={{ zIndex: 5 - index }} />))}
-          {orderIngredients.length > 4 && (<span className={`${feedStyles.more} text text_type_main-default`}>+{orderIngredients.length - 4}</span>)}
+          {orderIngredients.length > 5 && (<span className={`${feedStyles.more} text text_type_main-default`}>+{orderIngredients.length - 5}</span>)}
         </div>
         <div className={`${constructorStyle.total__price} mr-10`}>
           <span className="text text_type_digits-medium">{price}</span>
