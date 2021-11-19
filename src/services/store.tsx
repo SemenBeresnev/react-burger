@@ -1,7 +1,7 @@
-import {applyMiddleware, compose, createStore} from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import {rootReducer} from "./reducers";
-import {wsURL} from "../utils/constants";
+import { rootReducer } from "./reducers";
+import { wsURL } from "../utils/constants";
 import {
     ORDER_WS_CONNECTION_CLOSED,
     ORDER_WS_CONNECTION_ERROR,
@@ -9,10 +9,10 @@ import {
     ORDER_WS_CONNECTION_SUCCESS,
     ORDER_WS_GET_MESSAGE
 } from "./actions/orders";
-import {ordersSocketMiddleWare} from "./middlewares/ordersSocketMiddleWare";
-import {configureStore} from "@reduxjs/toolkit";
+import { ordersSocketMiddleWare } from "./middlewares/ordersSocketMiddleWare";
+import { configureStore } from "@reduxjs/toolkit";
 
-const orderWsActions = {
+export const orderWsActions = {
     wsInit: ORDER_WS_CONNECTION_START,
     onOpen: ORDER_WS_CONNECTION_SUCCESS,
     onClose: ORDER_WS_CONNECTION_CLOSED,

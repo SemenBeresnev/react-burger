@@ -1,7 +1,7 @@
-import React, {createRef, useEffect, SyntheticEvent} from 'react';
+import React, { createRef, useEffect, SyntheticEvent } from 'react';
 import ingredientsStyles from './burger-ingredients.module.css';
 import Ingredient from "../ingredient/ingredient";
-import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {
@@ -9,11 +9,11 @@ import {
     REMOVE_INGREDIENT_FROM_MODAL,
     SET_INGREDIENT_TO_MODAL
 } from "../../services/actions/burger-ingredients";
-import {TIngredient} from "../../utils/types";
+import { TIngredient } from "../../utils/types";
 import { useDispatch, useSelector } from '../../services/types/types';
 
 function BurgerIngredients() {
-    const {ingredients, ingredientsRequest, ingredientsError} = useSelector(state => state.burgerIngredients)
+    const { ingredients, ingredientsRequest, ingredientsError } = useSelector(state => state.burgerIngredients)
     const [current, setCurrent] = React.useState<string>('buns');
     const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
     const bunsRef = createRef<HTMLDivElement>();
@@ -22,16 +22,12 @@ function BurgerIngredients() {
     const dispatch = useDispatch();
     const scrollContRef = createRef<HTMLDivElement>();
 
-    useEffect(() => {
-        dispatch(getIngredients());
-    }, [dispatch]);
-
     /*
     const handleOpenModal = (e: SyntheticEvent) => {
         const id = e.currentTarget.getAttribute('id');
         dispatch({
             type: SET_INGREDIENT_TO_MODAL,
-            item: ingredients.find((item: TIngredient) => item._id === id)
+            item: ingredients.find((item) => item._id === id)
         })
         setModalIsOpen(true);
     }
@@ -73,7 +69,7 @@ function BurgerIngredients() {
             {!ingredientsError && !ingredientsRequest && ingredients.length > 0 && (
                 <div className={ingredientsStyles.constr}>
                     <h1 className="text text_type_main-large mt-10">Соберите бургер</h1>
-                    <div style={{display: 'flex'}} className='mt-5'>
+                    <div style={{ display: 'flex' }} className='mt-5'>
                         <a href="#buns">
                             <Tab value="buns" active={current === 'buns'} onClick={handleTabClick}>
                                 Булка
@@ -91,21 +87,21 @@ function BurgerIngredients() {
                         </a>
                     </div>
                     <div className={`${ingredientsStyles.ingredients} mt-10`}>
-                        <div className={ingredientsStyles.products} onScroll={handleScroll} ref = {scrollContRef}>
+                        <div className={ingredientsStyles.products} onScroll={handleScroll} ref={scrollContRef}>
                             <h3 className="text text_type_main-medium" ref={bunsRef} id="buns">Булки</h3>
                             <div className={ingredientsStyles.products__cont}>
-                                {ingredients.filter((item: TIngredient) => item.type === 'bun').map((item: TIngredient) => <Ingredient
-                                    {...item} key={item._id}/>)}
+                                {ingredients.filter((item) => item.type === 'bun').map((item) => <Ingredient
+                                    {...item} key={item._id} />)}
                             </div>
                             <h3 className="text text_type_main-medium" ref={saucesRef} id="sauces">Соусы</h3>
                             <div className={ingredientsStyles.products__cont}>
-                                {ingredients.filter((item: TIngredient) => item.type === 'sauce').map((item: TIngredient) => <Ingredient
-                                    {...item} key={item._id}/>)}
+                                {ingredients.filter((item) => item.type === 'sauce').map((item) => <Ingredient
+                                    {...item} key={item._id} />)}
                             </div>
                             <h3 className="text text_type_main-medium" ref={mainsRef} id="mains">Начинки</h3>
                             <div className={ingredientsStyles.products__cont}>
-                                {ingredients.filter((item: TIngredient) => item.type === 'main').map((item: TIngredient) => <Ingredient
-                                    {...item} key={item._id}/>)}
+                                {ingredients.filter((item) => item.type === 'main').map((item) => <Ingredient
+                                    {...item} key={item._id} />)}
                             </div>
                         </div>
                     </div>

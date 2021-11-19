@@ -1,13 +1,13 @@
-import React, {useEffect, useState, ChangeEvent, SyntheticEvent, FormEvent} from "react";
+import React, { useEffect, useState, ChangeEvent, SyntheticEvent, FormEvent } from "react";
 import styles from "./profile-form.module.css";
-import {Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useCustomInput} from "../../hooks/useInput";
-import {getUserInfo, sendUserInfo} from "../../services/actions/user";
+import { Button, EmailInput, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useCustomInput } from "../../hooks/useInput";
+import { getUserInfo, sendUserInfo } from "../../services/actions/user";
 import { TForm } from "../../utils/types";
 import { useDispatch, useSelector } from "../../services/types/types";
 
 export function ProfileForm() {
-    const {user} = useSelector(state => state.userData);
+    const { user } = useSelector(state => state.userData);
     const dispatch = useDispatch();
 
     const [form, setForm] = useState<TForm>({
@@ -40,7 +40,7 @@ export function ProfileForm() {
         })
         setIsChangeInput(true);
     }
-    
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(sendUserInfo(form));
@@ -56,7 +56,7 @@ export function ProfileForm() {
         })
         setIsChangeInput(false);
     }
-  
+
     return (
         <form className={`${styles.form} mt-30`} onSubmit={handleSubmit}>
             <div className="form__item mb-6">
@@ -77,7 +77,7 @@ export function ProfileForm() {
                 />
             </div>
             <div className="form__item mb-6">
-                <EmailInput onChange={handleOnChange} value={form.email} name={'email'}/>
+                <EmailInput onChange={handleOnChange} value={form.email} name={'email'} />
             </div>
             <div className="form__item mb-6">
                 <Input
@@ -99,7 +99,7 @@ export function ProfileForm() {
             {isChangeInput && (
                 <div className={`${styles.form__buttons} mb-20`}>
                     <Button type={"secondary"} size="medium" onClick={handleCancel}>Отмена</Button>
-                    <Button type={"primary"} size="medium">Сохранить</Button>
+                    <Button type={"primary"} size="medium">Изменить</Button>
                 </div>
             )}
         </form>

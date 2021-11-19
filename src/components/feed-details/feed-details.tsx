@@ -33,11 +33,13 @@ export const FeedDetails = () => {
   }, [order, ingredients])
 
   const price = useMemo(() => {
-    return orderIngredients.reduce((acc: any, item: any): any => {
-      if (item && item.type === 'bun') {
-        acc += item && item.price * 2;
-      } else {
-        acc += item && item.price;
+    return orderIngredients.reduce((acc, item): number => {
+      if (item) {
+        if (item.type === 'bun') {
+          acc += item.price * 2;
+        } else {
+          acc += item.price;
+        }
       }
       return acc;
     }, 0)

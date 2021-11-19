@@ -1,5 +1,5 @@
-import {apiURL} from "../../utils/constants";
-import { AppDispatch } from "../types/types";
+import { apiURL } from "../../utils/constants";
+import { AppDispatch, AppThunk } from "../types/types";
 
 export const GET_INGREDIENTS_REQUEST = 'GET_ITEMS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_ITEMS_SUCCESS';
@@ -7,7 +7,7 @@ export const GET_INGREDIENTS_FAILED = 'GET_ITEMS_FAILED';
 export const SET_INGREDIENT_TO_MODAL = 'SET_INGREDIENT_TO_MODAL';
 export const REMOVE_INGREDIENT_FROM_MODAL = 'REMOVE_INGREDIENT_FROM_MODAL';
 
-export const getIngredients = () => {
+export const getIngredients = (): AppThunk => {
     return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
@@ -26,12 +26,12 @@ export const getIngredients = () => {
                         ingredients: data.data,
                     })
                 } else {
-                    dispatch({type: GET_INGREDIENTS_FAILED})
+                    dispatch({ type: GET_INGREDIENTS_FAILED })
                 }
             })
             .catch(err => {
                 console.log(err)
-                dispatch({type: GET_INGREDIENTS_FAILED})
+                dispatch({ type: GET_INGREDIENTS_FAILED })
             })
     }
 }

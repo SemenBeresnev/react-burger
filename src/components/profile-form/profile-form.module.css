@@ -9,6 +9,5 @@
 
 .form__buttons {
     display: flex;
-    max-width: 480px;
-    justify-content: flex-end;
+    max-width: 100%;
 }

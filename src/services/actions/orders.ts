@@ -2,6 +2,7 @@ import { AppDispatch, AppThunk } from "../types/types";
 import { apiURL } from "../../utils/constants";
 import { Dispatch } from "react";
 import { getCookie } from "../../utils/funcs";
+import { postOrderUser } from "../../utils/api";
 
 export const ORDER_WS_CONNECTION_SUCCESS: 'ORDER_WS_CONNECTION_SUCCESS' = 'ORDER_WS_CONNECTION_SUCCESS';
 export const ORDER_WS_CONNECTION_ERROR: 'ORDER_WS_CONNECTION_ERROR' = 'ORDER_WS_CONNECTION_ERROR';
@@ -49,7 +50,7 @@ export const orderWsGetMessage = (message: any) => {
   }
 }
 
-export const getOrder = (orderId: string) => {
+export const getOrder = (orderId: string): AppThunk => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_ORDER_REQUEST
@@ -78,29 +79,13 @@ export const getOrder = (orderId: string) => {
   }
 }
 
-export const postOrder = (idsArr: string[]) => {
-  const accessToken = getCookie('token')
-  if (!accessToken) {
-    return;
-  }
-  return function (dispatch: AppDispatch) {
+export const postOrder = (idsArr: string[]): AppThunk => {
+  const accessToken = getCookie('token');
+  return async function (dispatch: AppDispatch) {
     dispatch({
       type: GET_ORDER_NUMBER_REQUEST
     })
-    fetch(`${apiURL}/orders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': accessToken
-      },
-      body: JSON.stringify({ ingredients: idsArr })
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error(`Something wrong: ${res.status}`)
-      })
+    await postOrderUser(idsArr)
       .then(res => {
         if (res && res.success) {
           dispatch({
