@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import ReactDOM from "react-dom";
 import modalStyles from './modal.module.css';
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
+import {useHistory} from "react-router-dom";
 
 type TModalProps = {
   title?: string,
@@ -11,10 +12,15 @@ type TModalProps = {
 }
 
 const Modal: React.FC<TModalProps> = (props) => {
+  const history = useHistory();
+  const back = (e: Event | SyntheticEvent) => {
+      e.stopPropagation();
+      history.goBack();
+  };
   const handleCatchEsc = (e: KeyboardEvent) => {
-    if (e.code === 'Escape') {
-      props.onClose();
-    }
+      if (e.code === 'Escape') {
+          back(e)
+      }
   }
   React.useEffect(() => {
     document.addEventListener('keyup', handleCatchEsc);

@@ -1,6 +1,5 @@
 
-const apiURL = 'https://norma.nomoreparties.space/api';
+const apiURL: string = 'https://norma.nomoreparties.space/api';
+const wsURL: string = 'wss://norma.nomoreparties.space/orders';
 
-export {
-    apiURL
-}
+export { apiURL, wsURL }

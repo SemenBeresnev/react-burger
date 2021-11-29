@@ -81,12 +81,12 @@ const BurgerConstructorIngredient: React.FC<TConstructorItemIngredient> = (props
         />
     </li>)
 }
-
+/*
 BurgerConstructorIngredient.propTypes = {
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
     uuid: PropTypes.string.isRequired,
-}
+}*/
 export default BurgerConstructorIngredient;

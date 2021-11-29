@@ -1,45 +1,26 @@
+import { TConstructorIngredient } from "../types/types";
 import {
-    GET_ORDER_FAILED,
-    GET_ORDER_SUCCESS,
-    GET_ORDER_REQUEST,
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     ADD_BUN_TO_CONSTRUCTOR,
-    REMOVE_INGREDIENT_FROM_CONSTRUCTOR, MOVE_INGREDIENT_IN_CONSTRUCTOR, CLEAR_ORDER, CLEAR_CONSTRUCTOR,
+    REMOVE_INGREDIENT_FROM_CONSTRUCTOR, MOVE_INGREDIENT_IN_CONSTRUCTOR, CLEAR_CONSTRUCTOR,
 } from "../actions/burger-constructor";
+import {TConstructorActions} from "../types/burger-constructor";
 
-const initialState = {
-    order: null,
-    orderRequest: false,
-    orderFailed: false,
+type TInitialState = {
+    ingredients: TConstructorIngredient[];
+    bun: TConstructorIngredient | null;
+    totalPrice: number;
+}
 
+const initialState: TInitialState = {
     ingredients: [],
     bun: null,
 
     totalPrice: 0
 }
 
-export const constructorReducer = (state = initialState, action: any) => {
+export const constructorReducer = (state = initialState, action: TConstructorActions): TInitialState => {
     switch(action.type) {
-        case GET_ORDER_FAILED:
-            return {
-                ...state,
-                orderFailed: true
-            }
-        case GET_ORDER_REQUEST:
-            return {
-                ...state,
-                orderRequest: true
-            }
-        case GET_ORDER_SUCCESS:
-            return {
-                ...state,
-                order: action.payload
-            }
-        case CLEAR_ORDER:
-            return {
-                ...state,
-                order: null
-            }
         case ADD_INGREDIENT_TO_CONSTRUCTOR:
             return {
                 ...state,

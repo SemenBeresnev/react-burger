@@ -3,13 +3,13 @@ import styles from "./register.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import {sendRegister} from "../../services/actions/user";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "../../services/types/types";
 import { TForm } from "../../utils/types";
 
 export function Register() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isAuth}: any = useSelector<any>(state => state.userData);
+    const {isAuth} = useSelector(state => state.userData);
 
     const [form, setForm] = useState<TForm>({
         email: "",

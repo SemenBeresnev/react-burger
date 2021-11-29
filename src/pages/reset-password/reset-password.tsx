@@ -3,13 +3,13 @@ import resetStyles from './reset-password.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import {DELETE_WAS_ON_FORGOT_PAGE, sendResetPassword} from "../../services/actions/user";
-import {useDispatch, useSelector} from "react-redux";
 import { TFormReset } from "../../utils/types";
+import { useDispatch, useSelector } from "../../services/types/types";
 
 export function ResetPassword() {
     const history = useHistory();
 
-    const {wasOnForgotPass, isAuth}: any = useSelector<any>(state => state.userData);
+    const {wasOnForgotPass, isAuth} = useSelector(state => state.userData);
 
     const dispatch = useDispatch();
 
