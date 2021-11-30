@@ -4,7 +4,7 @@ import {
     ADD_BUN_TO_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR, MOVE_INGREDIENT_IN_CONSTRUCTOR, CLEAR_CONSTRUCTOR,
 } from "../actions/burger-constructor";
-import {TConstructorActions} from "../types/burger-constructor";
+import { TConstructorActions } from "../types/burger-constructor";
 
 type TInitialState = {
     ingredients: TConstructorIngredient[];
@@ -12,7 +12,7 @@ type TInitialState = {
     totalPrice: number;
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     ingredients: [],
     bun: null,
 
@@ -20,7 +20,7 @@ const initialState: TInitialState = {
 }
 
 export const constructorReducer = (state = initialState, action: TConstructorActions): TInitialState => {
-    switch(action.type) {
+    switch (action.type) {
         case ADD_INGREDIENT_TO_CONSTRUCTOR:
             return {
                 ...state,
@@ -35,7 +35,7 @@ export const constructorReducer = (state = initialState, action: TConstructorAct
             return {
                 ...state,
                 ingredients: [
-                    ...state.ingredients.filter(({uuid}) => uuid !== action.id)
+                    ...state.ingredients.filter(({ uuid }) => uuid !== action.id)
                 ],
             }
         case MOVE_INGREDIENT_IN_CONSTRUCTOR:

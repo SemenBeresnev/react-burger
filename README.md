@@ -1,8 +1,8 @@
 # Учебный проект по курсу React разработчик
-
+Link to project in GH Pages [CLICK](https://semenberesnev.github.io/react-burger/)
 ## Доступные команды
 
-In the project directory, you can run:
+In the project directory, you can run: 
 
 ### `npm start`
 
@@ -22,6 +22,21 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run test`
+
+Runs test app.
+
+### `npm run cypress`
+
+Runs test app.
+
+### `npm predeploy`
+Create actual build version for production
+
+### `npm deploy`
+Create build and deploy to github pages
+
+
 # Описание
 
 Ни в коем случае не используйте, ту фигню, что я здесь написал как объект для подражания, обучения или чего-то еще.
@@ -30,5 +45,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 # ToDo List
 
 ## компоненты
-
-начинаем sprint 2
+END
