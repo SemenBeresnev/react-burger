@@ -1,34 +1,46 @@
 # Учебный проект по курсу React разработчик
+
 Link to project in GH Pages [CLICK](https://semenberesnev.github.io/react-burger/)
-## Доступные команды
 
-In the project directory, you can run: 
+## Использованные технологии
+В проекте применены следующие технологии: HTML5, CSS3, Javascript, React.js, Typescript, Jest, Cypress
 
-### `npm start`
+## Установка
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Для запуска требуется Node.js v12+.
+Скачайте или клонируйте проект из Github. Установите все зависимости.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    $ git clone https://github.com/semenberesnev/stealerburger.git
+    $ npm install
+Использование
+Для открытия в режиме 'development mode' используйте команду
 
-### `npm run build`
+$ npm run start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Тестирование
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для unit тестов
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+$ npm run test
 
-### `npm run test`
+Для запуска cypress
 
-Runs test app.
+$ npm run cypress:open
 
-### `npm run cypress`
+##  Распространение
 
-Runs test app.
+Для сборки проекта используйте команду
+
+$ npm run build
+
+Для сборки проекта и деплоя на сервер используйте команду
+
+$ npm run deploy-script
+
+Для очистки проекта от (webpack, Babel, ESLint, etc) используйте команду
+
+$ npm run eject
+
 
 ### `npm predeploy`
 Create actual build version for production
@@ -37,12 +49,11 @@ Create actual build version for production
 Create build and deploy to github pages
 
 
+
 # Описание
 
 Ни в коем случае не используйте, ту фигню, что я здесь написал как объект для подражания, обучения или чего-то еще.
-Я в полной прострации и ничего не понимаю из того, что пишщу...
+Я в полной прострации и ничего не понимаю из того, что пишу...
 
-# ToDo List
 
-## компоненты
 END
