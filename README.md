@@ -1,34 +1,64 @@
 # Учебный проект по курсу React разработчик
+Ссылка на рабочую версию проекта [CLICK](https://semenberesnev.github.io/react-burger/)
 
-## Доступные команды
+## Описание
+Проектная работа по Яндекс Практикуму. Бургерная Stellar Burger с возможностью оформления заказов, просмотра ингредиентов, просмотра ленты ингредиентов, а также личных заказов. На сайте используется авторизация и регистрация, заказ может сделать только авторизованный пользователь
 
-In the project directory, you can run:
+## Использованные технологии
+В проекте применен следующий стек технологий: 
+- HTML5
+- CSS3 
+- Javascript
+- React.js
+- Typescript
+- Jest
+- Cypress
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Установка
+Для запуска требуется Node.js v14+.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Скачайте или клонируйте проект из Github. Установите все зависимости.
 
-### `npm run build`
+`$ git clone https://github.com/semenberesnev/stealerburger.git`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`$ npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Использование
+Для открытия в режиме 'development mode' используйте команду
 
-# Описание
+`$ npm run start`
 
-Ни в коем случае не используйте, ту фигню, что я здесь написал как объект для подражания, обучения или чего-то еще.
-Я в полной прострации и ничего не понимаю из того, что пишщу...
+## Тестирование
 
-# ToDo List
+Для запуска unit тестов используйте команду
 
-## компоненты
+`$ npm run test`
 
-начинаем sprint 2
+Для запуска cypress тестов используйте команду
+
+`$ npm run cypress`
+
+##  Распространение
+
+Для сборки проекта используйте команду
+
+`$ npm run build`
+
+Для подготовки проекта к деплою используйте команду
+
+`$ npm run predeploy`
+
+Для деплоя проекта на Github pages используйте команду
+
+`$ npm run deploy`
+
+## Остальные скрипты
+
+Для очистки проекта от (webpack, Babel, ESLint, etc) используйте команду
+
+`$ npm run eject`
+
+
+## Версия 0.0.1

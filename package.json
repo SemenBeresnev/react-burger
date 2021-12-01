@@ -2,19 +2,18 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://semenberesnev.github.io/react-burger/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.24",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.12.0",
+    "date-fns": "^2.25.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dnd": "^14.0.4",
-    "react-dnd-html5-backend": "^14.0.2",
+    "react-dnd": "^14.0.3",
+    "react-dnd-html5-backend": "^14.0.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
@@ -22,13 +21,17 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.4.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,8 +52,20 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.10",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^12.20.36",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@types/react-router": "^5.1.17",
     "@types/react-router-dom": "^5.3.2",
     "@types/uuid": "^8.3.1",
-    "date-fns": "^2.25.0"
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
+    "cypress": "^9.1.0",
+    "enzyme": "^3.11.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "fetch-mock": "^9.11.0",
+    "gh-pages": "^3.2.3",
+    "redux-mock-store": "^1.5.4"
   }
 }

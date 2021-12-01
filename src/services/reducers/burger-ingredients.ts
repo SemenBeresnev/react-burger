@@ -5,7 +5,7 @@ import {
     GET_INGREDIENTS_FAILED,
     SET_INGREDIENT_TO_MODAL, REMOVE_INGREDIENT_FROM_MODAL
 } from "../actions/burger-ingredients";
-import {TBurgerIngredientsActions} from "../types/burger-ingerdients";
+import { TBurgerIngredientsActions } from "../types/burger-ingerdients";
 
 type TIngredientInitialState = {
     ingredients: TIngredient[];
@@ -14,7 +14,7 @@ type TIngredientInitialState = {
     ingredientDetails: TIngredient | {}
 }
 
-const initialState: TIngredientInitialState = {
+export const initialState: TIngredientInitialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsError: false,
@@ -30,10 +30,10 @@ export const burgerIngredientsReducer = (state = initialState, action: TBurgerIn
             };
         }
         case GET_INGREDIENTS_SUCCESS: {
-            return {...state, ingredientsError: false, ingredients: action.ingredients, ingredientsRequest: false};
+            return { ...state, ingredientsError: false, ingredients: action.ingredients, ingredientsRequest: false };
         }
         case GET_INGREDIENTS_FAILED: {
-            return {...state, ingredientsError: true, ingredientsRequest: false};
+            return { ...state, ingredientsError: true, ingredientsRequest: false };
         }
         case SET_INGREDIENT_TO_MODAL: {
             return {

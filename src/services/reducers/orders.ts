@@ -2,6 +2,7 @@ import {
   CLEAR_ORDER,
   CLEAR_ORDER_NUMBER,
   GET_ORDER_FAILED,
+  GET_ORDER_NUMBER_FAILED,
   GET_ORDER_NUMBER_REQUEST,
   GET_ORDER_NUMBER_SUCCESS,
   GET_ORDER_REQUEST,
@@ -12,11 +13,12 @@ import {
   ORDER_WS_GET_MESSAGE
 } from "../actions/orders";
 
-import {TOrdersActions} from "../types/orders";
-import {TFeedItem} from "../types/user";
+import { TOrdersActions } from "../types/orders";
+import { TFeedItem } from "../types/user";
 
 type TInitialState = {
   wsConnected: boolean,
+  wsError: boolean,
   orders: TFeedItem[],
   total: number,
   totalToday: number,
@@ -28,8 +30,9 @@ type TInitialState = {
   orderNumberFailed: boolean
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   wsConnected: false,
+  wsError: false,
   orders: [],
   order: null,
   orderRequest: false,
@@ -52,7 +55,8 @@ export const ordersReducer = (state = initialState, action: TOrdersActions): TIn
     case ORDER_WS_CONNECTION_ERROR:
       return {
         ...state,
-        wsConnected: false
+        wsConnected: false,
+        wsError: true
       }
     case ORDER_WS_CONNECTION_CLOSED:
       return {
@@ -85,13 +89,18 @@ export const ordersReducer = (state = initialState, action: TOrdersActions): TIn
     case GET_ORDER_NUMBER_REQUEST:
       return {
         ...state,
-        orderRequest: true
+        orderNumberRequest: true,
       }
     case GET_ORDER_NUMBER_SUCCESS:
       console.log(action.payload)
       return {
         ...state,
         orderNumber: action.payload
+      }
+    case GET_ORDER_NUMBER_FAILED:
+      return {
+        ...state,
+        orderNumberFailed: true
       }
     case CLEAR_ORDER_NUMBER:
       return {
