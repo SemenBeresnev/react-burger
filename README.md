@@ -1,59 +1,64 @@
 # Учебный проект по курсу React разработчик
+Ссылка на рабочую версию проекта [CLICK](https://semenberesnev.github.io/react-burger/)
 
-Link to project in GH Pages [CLICK](https://semenberesnev.github.io/react-burger/)
+## Описание
+Проектная работа по Яндекс Практикуму. Бургерная Stellar Burger с возможностью оформления заказов, просмотра ингредиентов, просмотра ленты ингредиентов, а также личных заказов. На сайте используется авторизация и регистрация, заказ может сделать только авторизованный пользователь
 
 ## Использованные технологии
-В проекте применены следующие технологии: HTML5, CSS3, Javascript, React.js, Typescript, Jest, Cypress
+В проекте применен следующий стек технологий: 
+- HTML5
+- CSS3 
+- Javascript
+- React.js
+- Typescript
+- Jest
+- Cypress
+
 
 ## Установка
+Для запуска требуется Node.js v14+.
 
-Для запуска требуется Node.js v12+.
 Скачайте или клонируйте проект из Github. Установите все зависимости.
 
-    $ git clone https://github.com/semenberesnev/stealerburger.git
-    $ npm install
-Использование
+`$ git clone https://github.com/semenberesnev/stealerburger.git`
+
+`$ npm install`
+
+
+## Использование
 Для открытия в режиме 'development mode' используйте команду
 
-$ npm run start
+`$ npm run start`
 
 ## Тестирование
 
-Для unit тестов
+Для запуска unit тестов используйте команду
 
-$ npm run test
+`$ npm run test`
 
-Для запуска cypress
+Для запуска cypress тестов используйте команду
 
-$ npm run cypress:open
+`$ npm run cypress`
 
 ##  Распространение
 
 Для сборки проекта используйте команду
 
-$ npm run build
+`$ npm run build`
 
-Для сборки проекта и деплоя на сервер используйте команду
+Для подготовки проекта к деплою используйте команду
 
-$ npm run deploy-script
+`$ npm run predeploy`
+
+Для деплоя проекта на Github pages используйте команду
+
+`$ npm run deploy`
+
+## Остальные скрипты
 
 Для очистки проекта от (webpack, Babel, ESLint, etc) используйте команду
 
-$ npm run eject
+`$ npm run eject`
 
 
-### `npm predeploy`
-Create actual build version for production
-
-### `npm deploy`
-Create build and deploy to github pages
-
-
-
-# Описание
-
-Ни в коем случае не используйте, ту фигню, что я здесь написал как объект для подражания, обучения или чего-то еще.
-Я в полной прострации и ничего не понимаю из того, что пишу...
-
-
-END
+## Версия 0.0.1
